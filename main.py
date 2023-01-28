@@ -1,20 +1,43 @@
-from fastapi import FastAPI
-
 import requests
+from fastapi import FastAPI
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from time import sleep
 import pandas as pd
-
 
 
 app = FastAPI()
 
+
 @app.get("/")
 async def root():
 
-    URL = 'https://comic.naver.com/webtoon/weekday.nhn'
+    h = "https://comic.naver.com/webtoon/weekdayList?week="
+    day = ["mon", "tue", "wed", "thu", "fri", "sat", "sun", "dailyplus"]
+    df = pd.DataFrame(columns=["days", "title", "author", "rating", "url"])
 
-    html = requests.get(URL).text # html 문서 전체를 긁어서 출력해줌, .text는 태그 제외하고 text만 출력되게 함
-    soup = BeautifulSoup(html, 'html.parser')
+    for i in day:
+        page = requests.get(h + i)  # mon, tue, ... , dailyplus
+        soup = BeautifulSoup(page.text, "page.parser")
+
+        data = soup.find("div", {"class": "list_area daily_img"})
+        data = data.findAll("dl")  #
+        days = i
+
+        for l in data:
+            title = l.find("dt").text.replace("\n", "").strip()
+            author = (
+                l.find("dd", {"class": "desc"}).text.replace("\n", "").replace("\t", "")
+            )
+            rating = l.find("strong").text
+            url = "https://comic.naver.com" + l.find("dt").find("a")["href"]
+
+            df = pd.concat(
+                [
+                    df,
+                    pd.DataFrame(
+                        [[days, title, author, rating, url]],
+                        columns=["days", "title", "author", "rating", "url"],
+                    ),
+                ]
+            )
+
     return {"message": "Hello World"}
