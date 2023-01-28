@@ -6,7 +6,7 @@
   <br>
 </p>
 
-목차
+index
 
 ## Project Setup
 
@@ -23,8 +23,8 @@ GIF Images
 ## Skill
 
 | Fluuter | Dart |
-| :--------: | :--------: |\
-|   ![flutter]    |   ![dart]    |
+| :--------: | :--------: |
+|  "https://blog.kakaocdn.net/dn/XsNHt/btrb3m0cuQb/62QmvGg1bUVrI5uZfcWEi1/img.png"    |   "https://play-lh.googleusercontent.com/qbeCduZblOk80GaY164lw47gIRjXq9QIzSmgFwqQj1PyhNhTWxYR0OqPzm8BumnmJQ    |
 
 <br>
 
@@ -49,8 +49,3 @@ GIF Images
 <br>
 
 ## Licence
-
-<!-- Skill Icon Refernces -->
-
-[flutter]: https://blog.kakaocdn.net/dn/XsNHt/btrb3m0cuQb/62QmvGg1bUVrI5uZfcWEi1/img.png
-[dart]: https://play-lh.googleusercontent.com/qbeCduZblOk80GaY164lw47gIRjXq9QIzSmgFwqQj1PyhNhTWxYR0OqPzm8BumnmJQ
